@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Long Message For You ❤️</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="anniversary.css" />
+
+<style>
+:root {
+  --pink:#ff5c8a;
+  --light:#ffeaf1;
+  --dark:#d9446a;
+}
+
+/* GLOBAL */
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fff5f8 0%, #ffeaf1 100%);
+  font-family: 'Segoe UI', Inter, system-ui, Arial;
+  padding-top: 80px;
+  overflow-x: hidden;
+}
+
+/* ❤️ HEART LAYER */
+#heart-layer {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.floating-heart {
+  position: absolute;
+  bottom: -20px;
+  animation: floatUp linear forwards;
+  opacity: .85;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
+  50% { transform: translateY(-170px) scale(1.15) rotate(180deg); opacity: 0.8; }
+  100% { transform: translateY(-340px) scale(1.3) rotate(360deg); opacity: 0; }
+}
+
+/* NAVBAR */
+.navbar {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* CARD / MESSAGE BOX */
+.love-box {
+  background:white;
+  border-radius:20px;
+  padding:3rem;
+  box-shadow:0 10px 40px rgba(0,0,0,.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.love-box::before {
+  content: '💌';
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  font-size: 7rem;
+  opacity: 0.06;
+  transform: rotate(-15deg);
+}
+
+h1 {
+  color: var(--pink);
+  font-weight: 800;
+  text-shadow: 0 4px 10px rgba(255,92,138,0.4);
+}
+
+p {
+  font-size: 1.18rem;
+  line-height: 1.8;
+  color: #444;
+}
+
+/* Button */
+.btn-love {
+  padding: .8rem 2.5rem;
+  border-radius: 50px;
+  border:none;
+  background: linear-gradient(135deg, var(--pink), var(--dark));
+  color:white;
+  font-weight:600;
+  box-shadow:0 8px 25px rgba(255,92,138,0.4);
+  transition:.3s;
+}
+
+.btn-love:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow:0 12px 35px rgba(255,92,138,0.5);
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .love-box { padding: 2rem; }
+  h1 { font-size: 1.9rem; }
+  p { font-size: 1.1rem; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ❤️ Floating Hearts -->
+<div id="heart-layer"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+  <div class="container">
+    <a class="navbar-brand text-danger" href="#">❤️ Message for you ❤️</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link fw-semibold" href="anniversary.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link fw-semibold" href="#letter">Letter</a></li>
+        <li class="nav-item"><a class="nav-link fw-semibold" href="surprise.html">Surprise</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div style="height:70px"></div>
+
+<!-- CONTENT -->
+<div class="container mt-4">
+  <div class="col-lg-8 mx-auto love-box">
+    <h1 class="mb-4 text-center">My Message For You ❤️</h1>
+
+    <p>My Wife,</p>
+
+    <p>
+      Happy Anniversary gaa, Unang una gusto kong malaman mo kung gaano ako nagpapasalamat sa bawat sandali na
+  magkasama tayo. You are the softness in my days, ang warmth na palagi kong
+  inaabangan, at ang taong nagpaparamdam sa akin na ang pagmamahal talaga
+  ay parang tahanan.
+    </p>
+
+    <p>
+      Thank you for being my constant support, my happiness, and the reason I smile every day. I am so grateful for all the memories we’ve created together, and I’m excited for all the adventures and love that’s still ahead of us.
+    </p>
+
+    <p>
+       Mahal ko kung paano mo ako minamahal sa simple at totoong paraan.
+  Mahal ko kung paano mo iniisip ang maliliit na bagay para sa akin.
+  At higit sa lahat, mahal ko kung paano mo mahal ang puso ko sincerely, honestly, and fully at higit higit pa.
+    </p>
+
+    <p>
+      Thank you for being my everything, for staying when things weren’t always easy, and for loving me just as I am. Thank you for being the wonderful, genuine you that I fall in love with more every day. I’m excited for all that’s ahead — the laughter, the adventures, and the beautiful life we’ll keep building side by side.
+    </p>
+
+    <p class="fw-bold mt-4" style="color:var(--pink)">
+      I love you endlessly, ga! <br> Mahal na mahal kita!!!❤️
+    </p>
+
+    <div class="text-center mt-4">
+      <a href="anniversary.html" class="btn-love">Back</a>
+      <a href="surprise2.html" class="btn-love">Next Surprise</a>
+  </div>
+</div>
+
+<!-- ❤️ HEART GENERATOR SCRIPT -->
+<script>
+const heartLayer = document.getElementById('heart-layer');
+const hearts = ['❤️','💕','💖','💗','💘','💝','😘','🥰'];
+
+function spawnHeart(){
+  const el = document.createElement('div');
+  el.className='floating-heart';
+  el.textContent = hearts[Math.floor(Math.random()*hearts.length)];
+  el.style.left = (Math.random()*95)+'%';
+  el.style.fontSize = (14 + Math.random()*28)+'px';
+  el.style.animationDuration = (5 + Math.random()*6)+'s';
+  heartLayer.appendChild(el);
+  setTimeout(()=>el.remove(),12000);
+}
+
+setInterval(spawnHeart,500);
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
