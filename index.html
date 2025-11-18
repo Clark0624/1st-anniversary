@@ -1,621 +1,125 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Anniversary Time</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Password</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-<link rel="stylesheet" href="anniversary.css" />
-
 <style>
-:root {
-  --pink:#ff5c8a;
-  --light:#ffeaf1;
-  --dark:#d9446a;
-  --gold:#ffd700;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  min-height:100vh;
-  font-family:'Segoe UI',Inter,system-ui,Arial;
-  overflow-x:hidden;
-  background: linear-gradient(135deg, #ffeaf1 0%, #fff5f8 100%);
-}
-
-/* ❤️ HEART LAYER ALWAYS IN FRONT */
-#heart-layer {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  pointer-events: none;
-  z-index: 9999;
-}
-
-.floating-heart {
-  position: absolute;
-  bottom: -20px;
-  animation: floatUp linear forwards;
-  opacity: .85;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
-}
-
-@keyframes floatUp {
-  0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
-  50% { transform: translateY(-170px) scale(1.15) rotate(180deg); opacity: 0.8; }
-  100% { transform: translateY(-340px) scale(1.3) rotate(360deg); opacity: 0; }
-}
-
-/* NAVBAR ENHANCEMENT */
-.navbar {
-  backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.95) !important;
-  transition: all 0.3s ease;
-}
-
-.navbar.scrolled {
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-}
-
-.navbar-brand {
-  font-size: 1.3rem;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
-
-/* 🌄 HERO SECTION */
-.hero {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.hero-bg {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-size: cover;
-  background-position: center;
-  z-index: -2;
-  transition: opacity 1.5s ease-in-out;
-  filter: brightness(0.85);
-}
-
-.hero::after {
-  content: '';
-  position: absolute;
-  top:0; left:0;
-  width:100%; height:100%;
-  background: linear-gradient(135deg, rgba(255,92,138,0.3) 0%, rgba(217,68,106,0.3) 100%);
-  z-index: -1;
-}
-
-/* HERO TEXT */
-.hero-content {
-  animation: fadeInUp 1s ease-out;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
+  body {
+    background: linear-gradient(135deg,#fff7fb,#ffe9f2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Inter, system-ui, Arial;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .password-box {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0,0,0,.1);
+    text-align: center;
+    margin-bottom: 20px;
   }
-}
-
-.hero h1 {
-  font-size: 3.5rem;
-  font-weight: 800;
-  color: #fff;
-  text-shadow: 0 4px 20px rgba(0,0,0,.5), 0 0 40px rgba(255,92,138,0.5);
-  position: relative;
-  z-index: 2;
-  margin-bottom: 1.5rem;
-  letter-spacing: -1px;
-}
-
-.hero h1 .text-danger {
-  color: #ff5c8a !important;
-  display: inline-block;
-  animation: heartbeat 1.5s infinite;
-}
-
-@keyframes heartbeat {
-  0%, 100% { transform: scale(1); }
-  10% { transform: scale(1.1); }
-  20% { transform: scale(1); }
-}
-
-.hero p {
-  font-size: 1.4rem;
-  margin-top: 1rem;
-  color: #fff;
-  position: relative;
-  z-index: 2;
-  text-shadow: 0 2px 10px rgba(0,0,0,.4);
-  font-weight: 300;
-  letter-spacing: 0.5px;
-}
-
-.heart-btn {
-  padding: 1rem 3rem;
-  font-size: 1.2rem;
-  border-radius: 50px;
-  background: linear-gradient(135deg, var(--pink) 0%, var(--dark) 100%);
-  border:none;
-  color:white;
-  transition: all .4s ease;
-  position:relative;
-  z-index:2;
-  font-weight: 600;
-  box-shadow: 0 8px 25px rgba(255,92,138,0.4);
-  cursor: pointer;
-  overflow: hidden;
-}
-
-.heart-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-  transition: left 0.5s;
-}
-
-.heart-btn:hover::before {
-  left: 100%;
-}
-
-.heart-btn:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 12px 35px rgba(255,92,138,0.5);
-}
-
-.heart-btn:active {
-  transform: translateY(-1px) scale(1.02);
-}
-
-/* SECTION STYLING */
-.section { 
-  padding:6rem 1rem; 
-  position: relative;
-}
-
-.section h2 {
-  font-size: 2.8rem;
-  font-weight: 800;
-  background: linear-gradient(135deg, var(--pink), var(--dark));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 1rem;
-}
-
-/* CARD ENHANCEMENTS */
-.card-love {
-  background:white;
-  border:0;
-  border-radius:20px;
-  box-shadow:0 10px 40px rgba(0,0,0,.08);
-  transition: all 0.4s ease;
-  overflow: hidden;
-  position: relative;
-}
-
-.card-love::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, var(--pink), var(--dark), var(--gold));
-  transform: scaleX(0);
-  transition: transform 0.4s ease;
-}
-
-.card-love:hover::before {
-  transform: scaleX(1);
-}
-
-.card-love:hover {
-  transform: translateY(-10px);
-  box-shadow:0 20px 50px rgba(255,92,138,.2);
-}
-
-.card-love h5 {
-  color: var(--pink);
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
-}
-
-/* SCROLL REVEAL */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease;
-}
-
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* LETTER SECTION */
-#letter {
-  background: linear-gradient(135deg, #fff5f8 0%, #ffeaf1 100%);
-}
-
-.letter-card {
-  background: white;
-  padding: 3rem;
-  border-radius: 20px;
-  box-shadow: 0 15px 50px rgba(0,0,0,0.1);
-  position: relative;
-  overflow: hidden;
-}
-
-.letter-card::before {
-  content: '💌';
-  position: absolute;
-  top: -20px;
-  right: -20px;
-  font-size: 8rem;
-  opacity: 0.05;
-  transform: rotate(-15deg);
-}
-
-.letter-card .lead {
-  font-size: 1.5rem;
-  color: var(--pink);
-  font-weight: 600;
-  font-family: 'Brush Script MT', cursive;
-}
-
-/* COUNTDOWN TIMER */
-.countdown {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin: 2rem 0;
-  flex-wrap: wrap;
-}
-
-.countdown-item {
-  text-align: center;
-  padding: 1.5rem;
-  background: white;
-  border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-  min-width: 120px;
-  transition: transform 0.3s ease;
-}
-
-.countdown-item:hover {
-  transform: scale(1.1);
-}
-
-.countdown-number {
-  font-size: 3rem;
-  font-weight: 800;
-  background: linear-gradient(135deg, var(--pink), var(--dark));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.countdown-label {
-  font-size: 0.9rem;
-  color: #666;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-top: 0.5rem;
-}
-
-/* 📱 MOBILE RESPONSIVE */
-@media(max-width:768px){
-  .hero h1{font-size:2.2rem;}
-  .hero p{font-size:1.1rem;}
-  .heart-btn{padding:.8rem 2rem;font-size:1rem;}
-  .section h2 {font-size: 2rem;}
-  .countdown {gap: 1rem;}
-  .countdown-item {min-width: 100px; padding: 1rem;}
-  .countdown-number {font-size: 2rem;}
-}
-
-/* PARTICLE EFFECT */
-.particles {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.particle {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background: var(--pink);
-  border-radius: 50%;
-  opacity: 0;
-  animation: particleFloat 4s infinite;
-}
-
-@keyframes particleFloat {
-  0% {
-    opacity: 0;
-    transform: translateY(0) translateX(0);
+  input {
+    padding: 10px;
+    width: 60%;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    text-align: center;
   }
-  10% {
-    opacity: 1;
+  .numkey {
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    border: none;
+    background-color: #ff5c8a;
+    color: white;
+    font-weight: bold;
+    transition: 0.2s;
   }
-  90% {
-    opacity: 1;
+  .numkey:hover {
+    background-color: #d9446a;
+    cursor: pointer;
   }
-  100% {
-    opacity: 0;
-    transform: translateY(-100vh) translateX(50px);
+  .row-key {
+    display: flex;
+    justify-content: center;
   }
-}
+  .btn-enter {
+    margin-top: 15px;
+    width: 200px;
+    background-color: #ff5c8a;
+    color: white;
+    font-weight: 600;
+  }
+  .btn-enter:hover {
+    background-color: #d9446a;
+  }
 </style>
 </head>
 <body>
 
-<!-- ❤️ HEART LAYER (ALWAYS IN FRONT) -->
-<div id="heart-layer"></div>
-
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-  <div class="container">
-    <a class="navbar-brand fw-bold text-danger" href="#">❤️ You and Me ❤️</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link fw-semibold" href="#about">Hi Love</a></li>
-        <li class="nav-item"><a class="nav-link fw-semibold" href="#letter">Letter</a></li>
-        <li class="nav-item"><a class="nav-link fw-semibold" href="#surprise">Surprise</a></li>
-      </ul>
+<div class="password-box">
+  <h2>Enter our Anniversary Date</h2>
+  <input type="password" id="pass" placeholder="Type code here" readonly>
+  <br>
+  <div class="numpad">
+    <div class="row-key">
+      <button class="numkey" onclick="pressKey('1')">1</button>
+      <button class="numkey" onclick="pressKey('2')">2</button>
+      <button class="numkey" onclick="pressKey('3')">3</button>
+    </div>
+    <div class="row-key">
+      <button class="numkey" onclick="pressKey('4')">4</button>
+      <button class="numkey" onclick="pressKey('5')">5</button>
+      <button class="numkey" onclick="pressKey('6')">6</button>
+    </div>
+    <div class="row-key">
+      <button class="numkey" onclick="pressKey('7')">7</button>
+      <button class="numkey" onclick="pressKey('8')">8</button>
+      <button class="numkey" onclick="pressKey('9')">9</button>
+    </div>
+    <div class="row-key">
+      <button class="numkey" onclick="pressKey('0')">0</button>
+      <button class="numkey" onclick="backspace()">⌫</button>
+      <button class="numkey" onclick="clearInput()">C</button>
     </div>
   </div>
-</nav>
+  <button class="btn btn-enter" onclick="checkPassword()">Enter</button>
+</div>
 
-<div style="height:74px"></div>
-
-<!-- HERO SECTION -->
-<section class="hero">
-  <div class="hero-bg" id="heroBackground"></div>
-  <div class="particles" id="particles"></div>
-
-  <div class="hero-content">
-    <h1 class="animate__animated animate__fadeInDown">Happy Anniversary, <span class="text-danger">My Love</span> ❤️</h1>
-    <p class="animate__animated animate__fadeInUp animate__delay-1s">You and I — another year of laughter, memories, and growing together.</p>
-    
-    <!-- COUNTDOWN -->
-    <div class="countdown animate__animated animate__fadeInUp animate__delay-2s">
-      <div class="countdown-item">
-        <div class="countdown-number" id="days">0</div>
-        <div class="countdown-label">Days</div>
-      </div>
-      <div class="countdown-item">
-        <div class="countdown-number" id="hours">0</div>
-        <div class="countdown-label">Hours</div>
-      </div>
-      <div class="countdown-item">
-        <div class="countdown-number" id="minutes">0</div>
-        <div class="countdown-label">Minutes</div>
-      </div>
-      <div class="countdown-item">
-        <div class="countdown-number" id="seconds">0</div>
-        <div class="countdown-label">Seconds</div>
-      </div>
-    </div>
-    
-    <button class="heart-btn mt-4 animate__animated animate__fadeInUp animate__delay-3s" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'});">Continue Our Journey</button>
-  </div>
-</section>
-
-<!-- ABOUT US -->
-<section id="about" class="section text-center">
-  <div class="container">
-    <h2 class="fw-bold mb-4 reveal">Hi Love!</h2>
-    <p class="lead text-muted mb-5 reveal">Always remember that, Every moment with you feels like a soft chapter in a book I never want to end.</p>
-
-    <div class="row g-4 mt-3">
-      <div class="col-md-4 reveal">
-        <div class="card p-4 card-love">
-          <h5 class="fw-bold">You're Special and Important</h5>
-          <p class="text-muted">Happy Anniversary, ga! I just want you to know that you are truly special and incredibly important to me. Every moment with you is a treasure, and I’m so grateful for your love, your laughter, and the way you make my life brighter every day. You mean the world to me, today and always.</p>
-        </div>
-      </div>
-
-      <div class="col-md-4 reveal">
-        <div class="card p-4 card-love">
-          <h5 class="fw-bold">You're my Baby </h5>
-          <p class="text-muted">Happy Anniversary, my love! I want you to know that I am yours and yours alone, now and forever. You will always be my baby, my heart, and my everything. No matter what, you’ll always have me by your side</p>
-        </div>
-      </div>
-
-      <div class="col-md-4 reveal">
-        <div class="card p-4 card-love">
-          <h5 class="fw-bold">Forever Us!</h5>
-          <p class="text-muted">Happy Anniversary, baby! No matter where life takes us, you’ll always be my home, my heart, and my everything. Every moment with you feels like a dream I never want to wake from, and I promise to love you, support you, and make countless memories with you for the rest of our lives</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- LETTER SECTION -->
-<section id="letter" class="section text-center">
-  <div class="container">
-    <h2 class="fw-bold mb-5 reveal">A Letter For You</h2>
-
-    <div class="col-md-8 mx-auto letter-card reveal">
-      <p class="lead">My Lovely Wife,</p>
-      <p class="text-muted" style="font-size: 1.1rem; line-height: 1.8;">
-        Thank you for another year of choosing me.<br><br>
-        You make everything feel easier, softer, and happier.<br>
-        I love the way you make me feel at home, even when we're far from each other.<br><br>
-        Every day with you is a gift I never take for granted.<br>
-        I love you endlessly  today, tomorrow, always, and forever.
-      </p>
-      <p class="fw-bold mt-4" style="font-size: 1.2rem; color: var(--pink);">Forever Yours Mahal,<br> Clark Adrian C. Billedo<br>😘😘😘😘😘</p>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section id="surprise" class="section text-center reveal">
-  <h2 class="fw-bold mb-4">Ready for the surprise?</h2>
-  <p class="text-muted mb-4">Something special is waiting for you...</p>
-  <button class="heart-btn" onclick="window.location.href='surprise.html'">Click Here!</button>
-</section>
-
-<!-- ❤️ HEART GENERATOR SCRIPT -->
 <script>
-const heartLayer = document.getElementById('heart-layer');
-const hearts = ['❤️', '💕', '💖', '💗', '💘', '💝', '😘', '🥰'];
+  const input = document.getElementById('pass');
 
-function spawnHeart(){
-  const el = document.createElement('div');
-  el.className='floating-heart';
-  el.textContent = hearts[Math.floor(Math.random() * hearts.length)];
-  el.style.left = (Math.random()*95)+'%';
-  el.style.fontSize = (14 + Math.random()*28)+'px';
-  el.style.animationDuration = (5 + Math.random()*6)+'s';
-  heartLayer.appendChild(el);
-  setTimeout(()=>el.remove(),12000);
-}
-
-setInterval(spawnHeart,500);
-</script>
-
-<!-- 🎞 HERO SLIDESHOW -->
-<script>
-const heroBg = document.getElementById('heroBackground');
-
-const images = [
-  'images/pic1.jpg',
-  'images/pic2.jpg',
-  'images/pic3.jpg',
-  'images/pic4.jpg',
-  'images/pic5.jpeg',
-  'images/pic6.jpg',
-  'images/pic7.jpeg',
-  'images/pic8.png',
-  'images/pic9.jpeg',
-];
-
-let current = 0;
-
-function changeBackground() {
-  heroBg.style.backgroundImage = `url('${images[current]}')`;
-  current = (current + 1) % images.length;
-}
-
-changeBackground();
-setInterval(changeBackground, 5000);
-</script>
-
-<!-- COUNTDOWN SCRIPT -->
-<script>
-// Set your anniversary date here (Year, Month-1, Day, Hour, Minute)
-const anniversaryDate = new Date(2024, 10, 18, 0, 0, 0).getTime();
-
-function updateCountdown() {
-  const now = new Date().getTime();
-  const timeSince = now - anniversaryDate;
-  
-  const days = Math.floor(timeSince / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((timeSince % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((timeSince % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((timeSince % (1000 * 60)) / 1000);
-  
-  document.getElementById('days').textContent = days;
-  document.getElementById('hours').textContent = hours;
-  document.getElementById('minutes').textContent = minutes;
-  document.getElementById('seconds').textContent = seconds;
-}
-
-updateCountdown();
-setInterval(updateCountdown, 1000);
-</script>
-
-<!-- SCROLL REVEAL SCRIPT -->
-<script>
-function reveal() {
-  const reveals = document.querySelectorAll('.reveal');
-  
-  reveals.forEach(element => {
-    const windowHeight = window.innerHeight;
-    const elementTop = element.getBoundingClientRect().top;
-    const elementVisible = 150;
-    
-    if (elementTop < windowHeight - elementVisible) {
-      element.classList.add('active');
-    }
-  });
-}
-
-window.addEventListener('scroll', reveal);
-reveal(); // Initial check
-</script>
-
-<!-- NAVBAR SCROLL EFFECT -->
-<script>
-window.addEventListener('scroll', function() {
-  const navbar = document.getElementById('mainNav');
-  if (window.scrollY > 50) {
-    navbar.classList.add('scrolled');
-  } else {
-    navbar.classList.remove('scrolled');
+  function pressKey(num){
+    input.value += num;
   }
-});
+
+  function backspace(){
+    input.value = input.value.slice(0,-1);
+  }
+
+  function clearInput(){
+    input.value = '';
+  }
+
+  function checkPassword(){
+    const correct = '111824';
+    if(input.value === correct){
+      window.location.href = 'loading.html'; 
+    } else {
+      alert('Incorrect code! Try again HEHE!');
+      clearInput();
+    }
+  }
 </script>
-
-<!-- PARTICLE EFFECT -->
-<script>
-const particlesContainer = document.getElementById('particles');
-
-function createParticle() {
-  const particle = document.createElement('div');
-  particle.className = 'particle';
-  particle.style.left = Math.random() * 100 + '%';
-  particle.style.animationDelay = Math.random() * 4 + 's';
-  particlesContainer.appendChild(particle);
-  
-  setTimeout(() => particle.remove(), 4000);
-}
-
-setInterval(createParticle, 300);
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
